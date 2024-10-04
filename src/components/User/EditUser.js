@@ -5,7 +5,7 @@ import Loader from "../Common/Loader";
 import "./User.css";
 
 const EditUser = () => {
-  const [user, setUser] = useState({ name: '', email: '', phone: '' }); // Initialize with empty fields
+  const [user, setUser] = useState({ name: '', email: '', phone: '', birthDate: '', gender: '', job: '' }); // Initialize with empty fields
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
@@ -100,6 +100,51 @@ const EditUser = () => {
             id="phone"
             name="phone"
             value={user.phone}
+            onChange={handleInput}
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="birthDate" className="form-label">Date of Birth</label>
+          <input
+            type="date"
+            className="form-control"
+            id="birthDate"
+            name="birthDate"
+            value={user.birthDate}
+            onChange={handleInput}
+          />
+        </div>
+        <div className="mb-3">
+          <label className="form-label">Gender</label>
+          <div>
+            <input
+              type="radio"
+              id="male"
+              name="gender"
+              value="male"
+              checked={user.gender == "male"}
+              onChange={handleInput}
+            />
+            <label htmlFor="male">Male</label>
+            <input
+              type="radio"
+              id="female"
+              name="gender"
+              value="female"
+              checked={user.gender === "female"}
+              onChange={handleInput}
+            />
+            <label htmlFor="female">Female</label>
+          </div>
+        </div>
+        <div className="mb-3">
+          <label htmlFor="job" className="form-label">Phone</label>
+          <input
+            type="text"
+            className="form-control"
+            id="job"
+            name="job"
+            value={user.job}
             onChange={handleInput}
           />
         </div>

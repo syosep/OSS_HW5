@@ -53,6 +53,18 @@ const EditUser = () => {
               <td>Phone</td>
               <td>{user.phone || 'N/A'}</td>
             </tr>
+            <tr>
+              <td>Date of Birth</td>
+              <td>{user.birthDate || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td>Gender</td>
+              <td>{user.gender || 'N/A'}</td>
+            </tr>
+            <tr>
+              <td>Job</td>
+              <td>{user.job || 'N/A'}</td>
+            </tr>
           </tbody>
         </table>
       )}

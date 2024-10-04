@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Loader from '../Common/Loader';
 import './User.css';
 const CreateUser = () => {
@@ -10,7 +10,10 @@ const CreateUser = () => {
     const [user, setUser] = useState({
         name: "",
         email: "",
-        phone: ""
+        phone: "",
+        birthDate: "",
+        gender: "",
+        job: ""
     })
 
     const handelInput = (event) => {
@@ -35,7 +38,7 @@ const CreateUser = () => {
 
             if (response.ok) {
                 console.log('Form submitted successfully!');
-                setUser({name: "",email: "",phone: ""})
+                setUser({ name: "", email: "", phone: "", birthDate: "", gender: "", job: "" })
                 navigate('/show-user');
             } else {
                 console.error('Form submission failed!');
@@ -43,7 +46,7 @@ const CreateUser = () => {
 
         } catch (error) {
             setError(error.message);
-        } finally{
+        } finally {
             setIsLoading(false);
         }
     }
@@ -51,8 +54,8 @@ const CreateUser = () => {
     return (
         <div className='user-form'>
             <div className='heading'>
-            {isLoading && <Loader />}
-            {error && <p>Error: {error}</p>}
+                {isLoading && <Loader />}
+                {error && <p>Error: {error}</p>}
                 <p>User Form</p>
             </div>
             <form onSubmit={handelSubmit}>
@@ -67,6 +70,23 @@ const CreateUser = () => {
                 <div className="mb-3">
                     <label for="pwd" className="form-label">Phone</label>
                     <input type="text" className="form-control" id="phone" name="phone" value={user.phone} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label for="bDate" className="form-label">Date of Birth</label>
+                    <input type="date" className="form-control" id="birthDate" name="birthDate" value={user.birthDate} onChange={handelInput} />
+                </div>
+                <div className="mb-3">
+                    <label className="form-label">Gender</label>
+                    <div>
+                        <input type="radio" id="male" name="gender" value="male" onChange={handelInput} />
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female" onChange={handelInput} />
+                        <label for="female">Female</label>
+                    </div>
+                </div>
+                <div className="mb-3">
+                    <label for="job" className="form-label">Job</label>
+                    <input type="text" className="form-control" id="job" name="job" value={user.job} onChange={handelInput} />
                 </div>
                 <button type="submit" className="btn btn-primary submit-btn">Submit</button>
             </form>
