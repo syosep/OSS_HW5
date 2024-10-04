@@ -1,42 +1,46 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Loader from "../Common/Loader";
 import "./User.css";
+
 const EditUser = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({ name: '', email: '', phone: '' }); // Initialize with empty fields
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
   const getUserApi = "http://localhost:3000/user";
 
+  const getUser = useCallback(() => {
+    setIsLoading(true); // Set loading to true when fetching data
+    axios
+      .get(`${getUserApi}/${id}`)
+      .then((response) => {
+        setUser(response.data);
+        setIsLoading(false); // Set loading to false after data is fetched
+      })
+      .catch((err) => {
+        console.error(err);
+        setError("Failed to fetch user data."); // Set a generic error message
+        setIsLoading(false);
+      });
+  }, [id, getUserApi]);
+
   useEffect(() => {
     getUser();
   }, [getUser]);
 
-  const getUser = () => {
-    axios
-      .get(getUserApi.concat("/") + id)
-      .then((item) => {
-        setUser(item.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  const handelInput = (e) => {
-    e.preventDefault();
+  const handleInput = (e) => {
     const { name, value } = e.target;
-    console.log(name, value);
-    setUser({ ...user, [name]: value });
+    setUser((prev) => ({ ...prev, [name]: value })); // Update the user state
   };
 
-  const handelSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true); // Set loading to true before starting the PUT request
 
-    fetch(getUserApi.concat("/") + id, {
+    fetch(`${getUserApi}/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -49,61 +53,54 @@ const EditUser = () => {
         }
         return response.json();
       })
-      .then((data) => {
-        setIsLoading(true);
+      .then(() => {
         navigate("/show-user");
       })
       .catch((error) => {
         setError(error.message);
         setIsLoading(false);
-      })
+      });
   };
 
   return (
     <div className="user-form">
       <div className="heading">
-      {isLoading && <Loader />}
-      {error && <p>Error: {error}</p>}
+        {isLoading && <Loader />}
+        {error && <p>Error: {error}</p>}
         <p>Edit Form</p>
       </div>
-      <form onSubmit={handelSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label for="name" className="form-label">
-            Name
-          </label>
+          <label htmlFor="name" className="form-label">Name</label>
           <input
             type="text"
             className="form-control"
             id="name"
             name="name"
             value={user.name}
-            onChange={handelInput}
+            onChange={handleInput}
           />
         </div>
         <div className="mb-3 mt-3">
-          <label for="email" className="form-label">
-            Email
-          </label>
+          <label htmlFor="email" className="form-label">Email</label>
           <input
             type="email"
             className="form-control"
             id="email"
             name="email"
             value={user.email}
-            onChange={handelInput}
+            onChange={handleInput}
           />
         </div>
         <div className="mb-3">
-          <label for="pwd" className="form-label">
-            Phone
-          </label>
+          <label htmlFor="phone" className="form-label">Phone</label>
           <input
             type="text"
             className="form-control"
             id="phone"
             name="phone"
             value={user.phone}
-            onChange={handelInput}
+            onChange={handleInput}
           />
         </div>
         <button type="submit" className="btn btn-primary submit-btn">
@@ -113,4 +110,5 @@ const EditUser = () => {
     </div>
   );
 };
+
 export default EditUser;
