@@ -4,7 +4,7 @@ import Loader from '../Common/Loader';
 import './User.css';
 const CreateUser = () => {
     const navigate = useNavigate();
-    const createUserApi = "https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/:endpoint"
+    const createUserApi = "https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/users"
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState({
