@@ -122,7 +122,7 @@ const EditUser = () => {
               id="male"
               name="gender"
               value="male"
-              checked={user.gender == "male"}
+              checked={user.gender === "male"}
               onChange={handleInput}
             />
             <label htmlFor="male">Male</label>
