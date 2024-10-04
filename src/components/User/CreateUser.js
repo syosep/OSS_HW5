@@ -79,9 +79,9 @@ const CreateUser = () => {
                     <label className="form-label">Gender</label>
                     <div>
                         <input type="radio" id="male" name="gender" value="male" onChange={handelInput} />
-                        <label for="male"> Male  </label>
+                        <label for="male">Male</label>
                         <input type="radio" id="female" name="gender" value="female" onChange={handelInput} />
-                        <label for="female"> Female</label>
+                        <label for="female">Female</label>
                     </div>
                 </div>
                 <div className="mb-3">
