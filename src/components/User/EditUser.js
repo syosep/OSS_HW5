@@ -10,7 +10,7 @@ const EditUser = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { id } = useParams();
   const navigate = useNavigate();
-  const getUserApi = "http://localhost:3000/user";
+  const getUserApi = "https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/:endpoint";
 
   const getUser = useCallback(() => {
     setIsLoading(true); // Set loading to true when fetching data

@@ -7,7 +7,7 @@ const EditUser = () => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
-  const getUserApi = "http://localhost:3000/user";
+  const getUserApi = "https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/:endpoint";
 
   const getUser = useCallback(() => {
     setLoading(true);
