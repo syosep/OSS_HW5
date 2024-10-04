@@ -1,36 +1,36 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import "./User.css";
 
 const EditUser = () => {
-  const [user, setUser] = useState({}); // Initialize as an object
-  const [loading, setLoading] = useState(true); // Loading state
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
   const { id } = useParams();
   const getUserApi = "http://localhost:3000/user";
 
-  const getUser = () => {
-    setLoading(true); // Start loading
+  const getUser = useCallback(() => {
+    setLoading(true);
     axios
-      .get(`${getUserApi}/${id}`) // Simplified URL concatenation
+      .get(`${getUserApi}/${id}`)
       .then((response) => {
         setUser(response.data);
       })
       .catch((err) => {
-        console.error(err); // Improved error logging
+        console.error(err);
       })
       .finally(() => {
-        setLoading(false); // End loading
+        setLoading(false);
       });
-  };
+  }, [id]); // id를 의존성 배열에 추가
 
   useEffect(() => {
     getUser();
-  }, [id]); // Added id to dependency array
+  }, [getUser]); // getUser를 의존성 배열에 포함
 
   return (
     <div className="user mt-5">
-      {loading ? ( // Conditional rendering based on loading state
+      {loading ? (
         <p>Loading...</p>
       ) : (
         <table className="table table-bordered">
@@ -43,7 +43,7 @@ const EditUser = () => {
           <tbody>
             <tr>
               <td>Name</td>
-              <td>{user.name || 'N/A'}</td> {/* Provide fallback for empty values */}
+              <td>{user.name || 'N/A'}</td>
             </tr>
             <tr>
               <td>Email</td>
