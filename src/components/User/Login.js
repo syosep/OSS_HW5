@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = ({ setIsLoggedIn }) => { // setIsLoggedIn을 props로 받음
+const Login = ({ setIsLoggedIn }) => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,13 +24,13 @@ const Login = ({ setIsLoggedIn }) => { // setIsLoggedIn을 props로 받음
       if (users.length > 0) {
         const user = users[0];
         if (user.password === credentials.password) {
-          setIsLoggedIn(true); // 로그인 성공 시 상태 업데이트
-          navigate('/dashboard'); // 대시보드로 이동
+          setIsLoggedIn(true);
+          navigate('/');
         } else {
-          throw new Error('비밀번호가 일치하지 않습니다.');
+          throw new Error('이메일이나 비밀번호가 일치하지 않습니다.');
         }
       } else {
-        throw new Error('해당 이메일로 등록된 사용자가 없습니다.');
+        throw new Error('이메일이나 비밀번호가 일치하지 않습니다.');
       }
     } catch (error) {
       setError(error.message);

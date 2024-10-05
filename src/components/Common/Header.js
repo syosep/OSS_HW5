@@ -6,8 +6,11 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    setIsLoggedIn(false); // 로그아웃 시 상태를 false로 변경
-    navigate('/'); // 홈으로 이동
+    const confirmed = window.confirm('로그아웃 하시겠습니까?');
+    if (confirmed) {
+      setIsLoggedIn(false);
+      navigate('/');
+    }
   };
 
   return (

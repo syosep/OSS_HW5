@@ -7,15 +7,15 @@ import EditUser from "./components/User/EditUser";
 import User from "./components/User/User";
 import Header from "./components/Common/Header";
 import Home from "./components/Layout/Home";
-import Login from "./components/User/Login"; // Login 컴포넌트 추가
+import Login from "./components/User/Login";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태 추가
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div className="App">
       <header className="container">
-        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {/* 로그인 상태 전달 */}
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/edit-user/:id" element={<EditUser />} />
