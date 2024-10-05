@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn }) => { // setIsLoggedIn을 props로 받음
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -18,16 +18,13 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // MockAPI에서 이메일을 기준으로 사용자 검색
       const response = await fetch(`https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/users?email=${credentials.email}`);
       const users = await response.json();
 
       if (users.length > 0) {
-        const user = users[0]; // 첫 번째 사용자 선택 (단일 사용자 기준)
-        
-        // 비밀번호 비교
+        const user = users[0];
         if (user.password === credentials.password) {
-          // 로그인 성공
+          setIsLoggedIn(true); // 로그인 성공 시 상태 업데이트
           navigate('/dashboard'); // 대시보드로 이동
         } else {
           throw new Error('비밀번호가 일치하지 않습니다.');

@@ -1,7 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Common.css";
-export default function Header() {
+
+export default function Header({ isLoggedIn, setIsLoggedIn }) {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsLoggedIn(false); // 로그아웃 시 상태를 false로 변경
+    navigate('/'); // 홈으로 이동
+  };
+
   return (
     <div>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
@@ -25,19 +33,25 @@ export default function Header() {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="create-user">
+                <Link className="nav-link" to="/create-user">
                   Create User
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="show-user">
+                <Link className="nav-link" to="/show-user">
                   Show User
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="login">
-                  Login
-                </Link>
+                {isLoggedIn ? (
+                  <button className="nav-link btn" onClick={handleLogout}>
+                    Logout
+                  </button>
+                ) : (
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
+                )}
               </li>
             </ul>
           </div>
