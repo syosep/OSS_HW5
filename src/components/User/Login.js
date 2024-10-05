@@ -18,18 +18,22 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(credentials),
-      });
+      // MockAPI에서 이메일을 기준으로 사용자 검색
+      const response = await fetch(`https://66ff38152b9aac9c997e8ed9.mockapi.io/api/oss/users?email=${credentials.email}`);
+      const users = await response.json();
 
-      if (response.ok) {
-        navigate('/dashboard');
+      if (users.length > 0) {
+        const user = users[0]; // 첫 번째 사용자 선택 (단일 사용자 기준)
+        
+        // 비밀번호 비교
+        if (user.password === credentials.password) {
+          // 로그인 성공
+          navigate('/dashboard'); // 대시보드로 이동
+        } else {
+          throw new Error('비밀번호가 일치하지 않습니다.');
+        }
       } else {
-        throw new Error('로그인 실패. 아이디와 비밀번호를 확인하세요.');
+        throw new Error('해당 이메일로 등록된 사용자가 없습니다.');
       }
     } catch (error) {
       setError(error.message);
