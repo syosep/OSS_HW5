@@ -16,7 +16,20 @@ function App() {
   return (
     <div className="App">
       <header className="container">
-        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> {}
+        <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} /> { }
+        <div className="text-center my-3">
+          <a
+            href="https://github.com/syosep"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+              alt="GitHub"
+              style={{ width: "50px", height: "50px" }}
+            />
+          </a>
+        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/edit-user/:id" element={<EditUser />} />
