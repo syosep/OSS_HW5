@@ -18,7 +18,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand" href="#">
-            <span className="navbar-text">React CRUD</span>
+            <span className="navbar-text">22100423 YosepShim</span>
           </Link>
           <button
             className="navbar-toggler"
@@ -40,11 +40,13 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
                   Create User
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/show-user">
-                  Show User
-                </Link>
-              </li>
+              {isLoggedIn && (
+                <li className="nav-item">
+                  <Link className="nav-link" to="/show-user">
+                    Show User
+                  </Link>
+                </li>
+              )}
               <li className="nav-item">
                 {isLoggedIn ? (
                   <button className="nav-link btn" onClick={handleLogout}>
