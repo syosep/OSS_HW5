@@ -6,6 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import EditUser from "./components/User/EditUser";
 import User from "./components/User/User";
 import Header from "./components/Common/Header";
+import Footer from "./components/Common/Footer"
 import Home from "./components/Layout/Home";
 import Login from "./components/User/Login";
 
