@@ -27,24 +27,36 @@ function App() {
         </Routes>
       </header>
       <div className="github-block text-center my-3 d-flex align-items-center justify-content-center">
-          <a
-            href="https://github.com/syosep"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="me-3"
-          >
-            <img
-              src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-              alt="GitHub"
-              className="github-logo"
-            />
-          </a>
-          <div className="github-info">
-            <h5>심요셉</h5>
-            <p>@syosep</p>
-            <p>개발 잘 하고 싶어요.</p>
-          </div>
+        <a
+          href="https://velog.io/@syosep153/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="me-3"
+        >
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="Velog"
+            className="github-logo"
+          />
+        </a>
+        <a
+          href="https://github.com/syosep"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="me-3"
+        >
+          <img
+            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            alt="GitHub"
+            className="github-logo"
+          />
+        </a>
+        <div className="github-info">
+          <h5>심요셉</h5>
+          <p>@syosep</p>
+          <p>개발 잘 하고 싶어요.</p>
         </div>
+      </div>
       <Footer />
     </div>
   );
