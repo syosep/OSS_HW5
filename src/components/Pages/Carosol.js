@@ -1,5 +1,5 @@
 import React from "react";
-import "./Carasol.css";
+import "./Carosol.css";
 
 const Carasol = () => {
   return (
