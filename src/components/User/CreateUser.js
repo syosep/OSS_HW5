@@ -56,7 +56,7 @@ const CreateUser = () => {
             <div className='heading'>
                 {isLoading && <Loader />}
                 {error && <p>Error: {error}</p>}
-                <p>User Form</p>
+                <p>Sign Up</p>
             </div>
             <form onSubmit={handelSubmit}>
                 <div className="mb-3">
