@@ -34,7 +34,7 @@ function App() {
           className="me-3"
         >
           <img
-            src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+            src="https://velog.io/favicon.ico"
             alt="Velog"
             className="github-logo"
           />
