@@ -55,7 +55,24 @@
     text-transform: uppercase;
   }
 
+  .github-block {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .github-logo {
+    width: 50px;
+    height: 50px;
+  }
+
   .github-info {
+    margin-left: 10px;
     color: #333;
     font-family: 'Arial', sans-serif;
   }
