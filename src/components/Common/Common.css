@@ -54,3 +54,18 @@
     font-weight: 600;
     text-transform: uppercase;
   }
+
+  .github-info {
+    color: #333;
+    font-family: 'Arial', sans-serif;
+  }
+
+  .github-info h5 {
+    margin: 0;
+    font-size: 18px;
+  }
+
+  .github-info p {
+    margin: 0;
+    font-size: 14px;
+  }
