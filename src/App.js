@@ -25,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} /> {/* 로그인 성공 시 상태 업데이트 */}
         </Routes>
       </header>
+      <Footer />
     </div>
   );
 }
