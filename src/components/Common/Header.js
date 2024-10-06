@@ -39,7 +39,7 @@ export default function Header({ isLoggedIn, setIsLoggedIn }) {
               </li>
               <li className="nav-item">
                 <Link className="nav-link fw-semibold" to="/create-user">
-                  Create User
+                  Sign Up
                 </Link>
               </li>
               {isLoggedIn && (
